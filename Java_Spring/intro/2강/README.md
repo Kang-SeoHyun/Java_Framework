@@ -1,4 +1,4 @@
-## 🌟[프로젝트 생성](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/lecture/48553?volume=1.00)🌟
+## 🌟프로젝트 생성🌟
 
 * 스프링 기반 프로젝트 만들어주는 [사이트](https://start.spring.io/)  
     1. 요즘 Gradle project 많이사용  
