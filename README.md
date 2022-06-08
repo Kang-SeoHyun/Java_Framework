@@ -1,15 +1,15 @@
 # 🌈 2022 ✨
 
-## 🐥 [0](https://github.com/Kang-SeoHyun/C_Language/tree/main/C_Pointer)
+## 🐥 [Java_Spring](https://github.com/Kang-SeoHyun/Java_Framework/tree/main/Java_Spring)
 
 <details>
 <summary>  <kbd>자세히</kbd> </summary>
 
-* 📖 교재 : [공동환의 열혈강의 C 포인터](https://freelec.co.kr/lecture/%EC%97%B4%ED%98%88%EA%B0%95%EC%9D%98-c-%ED%8F%AC%EC%9D%B8%ED%84%B0/)
-* 💪🏻 목표 : 포인터 익숙해지기
+### 입문하기
+* 📖 교재 : [김영한 인프런강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/dashboard)
+* 💪🏻 목표 : 스프링 입문하기
 * ❓ 방법 : 
-  * 깃허브에 [개념 정리](https://github.com/Kang-SeoHyun/C_Language/tree/main/C_Pointer)하기
-  * 코드 [따라하기](https://github.com/Kang-SeoHyun/C_Language/tree/main/C_Pointer/code)
+  * 코드 [따라하기](https://github.com/Kang-SeoHyun/Java_Framework/tree/main/Java_Spring/)
 * 🤙🏻 약속 : 1일 1강 이상  
   *  05.23 ~ 05.27 : ~ 2장  
   *  05.30 ~ 06.03 : ~ 4장  
