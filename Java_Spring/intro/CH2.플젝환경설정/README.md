@@ -1,4 +1,4 @@
-# ✏2강 - 프로젝트 환경설정✏
+# ✏CH2.프로젝트 환경설정✏
 
 ### 🌟프로젝트 생성🌟
 
@@ -50,3 +50,27 @@
     
 * 테스트 라이브러리  
     ![image](https://user-images.githubusercontent.com/77817094/172611065-6f079b63-3c44-4399-9454-b401955133fb.png)
+
+### 🌟View 환경설정🌟
+
+* Welcome page 만들기  
+  * static/index.html을 올려두면 웰컴페이지 기능을 제공함.  
+    > 이런거 검색은 spring.io 사이트에서 상단바에서 
+    projects -> spring boot -> learn -> 맨위 버전의 Reference Doc  
+    들어가서 찾으면 됨
+    
+
+* 컨트롤러 만들기
+  * main문 있는 곳에 컨트롤러 만들어주고 컨트롤러가 문자를 반환하면 viewResolver가 화면을 찾아서 처리한다.  
+    * > resources / templates / {반환값이름(ViewName)} + .html  
+    ex) hello.html ![image](https://user-images.githubusercontent.com/77817094/173014541-34525458-2dc5-49ee-8d7e-f3c2253e4902.png)
+  * 동작 환경 그림 ![image](https://user-images.githubusercontent.com/77817094/173014706-8db0adaa-fcbc-4f79-815b-9be4d5d97a2a.png)  
+
+
+### 🌟build하고 실행하기🌟  
+실제 console 창에서 build 하는 법  
+1. root file로 찾아간다.  
+2. 명령어 : ./gradlew build 입력 (삭제는 clean 입력)  
+3. build 파일이 생성되면 cd/build/libs 해서 jar파일 생성되었는지 확인 후  
+4. 명령어 : java -jar {파일이름(ex.hello-0.0.1-SNAPSHOT)} .jar 입력  
+5. 실행 확인
