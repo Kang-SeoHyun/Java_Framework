@@ -151,6 +151,65 @@ public class MemoryMemberRepository implements MemberRepository {
 
 ### 🎁 회원 리포지토리 테스트 케이스 작성🎁  
 
+회원 repository 메모리 구현체 테스트
+![image](https://user-images.githubusercontent.com/77817094/174022437-04a8622c-a1e1-4728-9eaf-e98f16685587.png)  
+```java
+package hello.hellospring.repository;
+
+import hello.hellospring.domain.Member;
+import org.junit.jupiter.api.Test;
+
+public class MemoryMemberRepositoryTest {
+
+    MemoryMemberRepository repository = new MemoryMemberRepository();
+
+    @Test //2. 이걸 작성해줘야함.
+    public void save(){
+        //1. 이 기능이 동작하는지 보려면
+        //3. 성공하면 초록불 뜸.
+        Member member = new Member();
+        member.setName("spring");
+
+        repository.save(member);
+        //멤버 저장하는거
+        Member result = repository.findById(member.getId()).get();
+        //제대로 들어갔나 검증하기 위해 result에 우선 저장.
+        System.out.println("result = " + (result == member));
+        //DB에서 꺼낸거랑 new로 만든거랑 똑같으면 성공!
+    }
+
+}
+```   
+* 실행 결과     
+![image](https://user-images.githubusercontent.com/77817094/174022835-6544c566-5cf9-4613-9fe7-8e7a0fb0658c.png)   
+-> 이렇게 나오는데 매번 출력 값을 볼 수는 없으니까 'assertions' 라는 기능이 있다.     
+
+```java 
+//System.out.println("result = " + (result == member));
+Assertions.assertEquals(result,member);
+```  
+* 똑같을 경우.
+![image](https://user-images.githubusercontent.com/77817094/174023890-2ddd4c74-b2c1-4841-aab7-1eaf11af6228.png)  
+
+* 다를 경우.
+![image](https://user-images.githubusercontent.com/77817094/174023983-cd2b9f42-ffe1-4f08-9bee-dac7454a7dc1.png)  
+
+요새는 이 문법 많이 씀.  
+```java
+//System.out.println("result = " + (result == member));
+//Assertions.assertEquals(result,null);
+Assertions.assertThat(member).isEqualTo(result);
+//요새는 이거 많이 씀
+```  
+Assertion뒤에서 옵션 열면 (alt + enter) static import 할 수 있음.  
+```java
+import static org.assertj.core.api.Assertions.*;
+// 추가 되었으므로 
+assertThat(member).isEqualTo(result);  
+//로 쓸 수 있다.
+```  
+
+
 ### 🎁 회원 서비스 개발🎁
 
 ### 🎁 회원 서비스 테스트🎁
