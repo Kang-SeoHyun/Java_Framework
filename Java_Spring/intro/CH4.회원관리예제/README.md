@@ -281,8 +281,19 @@ public void clearStore() {
 ![image](https://user-images.githubusercontent.com/77817094/174254443-2c08f426-8c1a-4a1b-89ee-f5fa6847bb79.png)  
 
 ```java
+@AfterEach //메서드가 실행끝날때마다 동작하는 콜백메서드
+public void afterEach() {
+    repository.clearStore();
+}
 
-```
+@Test //여기 위쯤에 작성 (메서드)
+public void save(){
+    //블라블라
+}
+```  
+
+> 테스트 코드 없이 개발하는 건 거의 불가능하다. 테스트 코드는 개발 전에 만들어도 되고(TDD) 이후에 만들어도 된다. 맘대로~
+
 ### 🎁 회원 서비스 개발🎁
 
 ### 🎁 회원 서비스 테스트🎁
