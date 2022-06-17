@@ -153,6 +153,8 @@ public class MemoryMemberRepository implements MemberRepository {
 
 회원 repository 메모리 구현체 테스트
 ![image](https://user-images.githubusercontent.com/77817094/174022437-04a8622c-a1e1-4728-9eaf-e98f16685587.png)  
+
+* 💦저장이 제대로 되는지 테스트💦
 ```java
 package hello.hellospring.repository;
 
@@ -202,6 +204,7 @@ Assertions.assertThat(member).isEqualTo(result);
 //요새는 이거 많이 씀
 ```  
 Assertion뒤에서 옵션 열면 (alt + enter) static import 할 수 있음.  
+
 ```java
 import static org.assertj.core.api.Assertions.*;
 // 추가 되었으므로 
@@ -209,7 +212,78 @@ assertThat(member).isEqualTo(result);
 //로 쓸 수 있다.
 ```  
 
+* 💦이름으로 찾아주는 테스트💦  
+```java
+@Test
+public void findByName() {
+    //멤버 두개 생성한 뒤
+    Member member1 = new Member();
+    member1.setName("spring1");
+    repository.save(member1);
 
+    Member member2 = new Member();
+    member2.setName("spring2");
+    repository.save(member2);
+
+    //when
+    Member result = repository.findByName("spring1").get();
+    //then
+    assertThat(result).isEqualTo(member1);
+    //실행결과 = 참
+    assertThat(result).isEqualTo(member2);
+    //실행결과 = 거짓(안됨)
+}
+```
+
+* 💦리스트 몇명인지 찾아주는 테스트💦  
+```java  
+@Test
+public void findAll() {
+    //멤버 두개 생성한 뒤
+    Member member1 = new Member();
+    member1.setName("spring1");
+    repository.save(member1);
+
+    Member member2 = new Member();
+    member2.setName("spring2");
+    repository.save(member2);
+
+    //when
+    List<Member> result = repository.findAll();
+    //then
+    assertThat(result.size()).isEqualTo(2);
+    //실행결과 = 참
+    assertThat(result.size()).isEqualTo(3);
+    //실행결과 = 거짓(안됨)
+    }
+```
+
+* ⁉ 문제 발생 ⁉  
+![image](https://user-images.githubusercontent.com/77817094/174252231-d9336664-e87a-4d02-9caa-b6b1439282bd.png)  
+
+    > 전체 테스트를 실행하기 위해서 class단위로 run을 하게되면 테스트들에 있는 객체가 이름이 같으면 (다른애 기준 먼저 정의된 애가 있으면) 실행오류가 뜬다. 따라서 test가 하나 끝날때마다 메모리를 리셋해줘야한다. = 리포지토리를 지워주는 코드 넣기.  
+
+* 기능 위치  
+![image](https://user-images.githubusercontent.com/77817094/174253843-7288a662-f0a7-4d82-9355-39e87a823dbd.png)  
+
+```java  
+@Override
+public List<Member> findAll() {
+    return new ArrayList<>(store.values());
+    //스토어에 있는 멤버들을 반환함.
+}
+
+// 여기에 추가해주기
+public void clearStore() {
+    store.clear();
+}
+```
+* 실행 위치  
+![image](https://user-images.githubusercontent.com/77817094/174254443-2c08f426-8c1a-4a1b-89ee-f5fa6847bb79.png)  
+
+```java
+
+```
 ### 🎁 회원 서비스 개발🎁
 
 ### 🎁 회원 서비스 테스트🎁
