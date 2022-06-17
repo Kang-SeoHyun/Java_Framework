@@ -294,6 +294,86 @@ public void save(){
 
 > 테스트 코드 없이 개발하는 건 거의 불가능하다. 테스트 코드는 개발 전에 만들어도 되고(TDD) 이후에 만들어도 된다. 맘대로~
 
-### 🎁 회원 서비스 개발🎁
+### 🎁 회원 서비스 개발🎁  
+
+회원 서비스 개발  
+![image](https://user-images.githubusercontent.com/77817094/174262623-73217372-35a6-4732-9741-229dd09d3953.png)  
+
+💦회원가입하는 기능💦
+
+```java
+package hello.hellospring.service;
+
+import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.MemoryMemberRepository;
+
+import java.util.Optional;
+
+public class MemberService {
+
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
+
+    //회원가입
+    public Long join(Member member){
+        //같은 이름이 있는 중복 회원은 안됨.
+        //방법 1
+        Optional<Member> result = memberRepository.findById(member.getId());
+        //= 앞에 안쓰고 맨뒤에서 alt+enter+v 누르면 옵셔널 뭐시기 저거 생김.
+        result.ifPresent(m -> {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
+        //result 값이 있으면 m 메세지 출력
+
+        //방법 2
+        memberRepository.findById(member.getId()).ifPresent(m -> {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
+        //정리해서 result 생략해주고 간결하게 짜는게 더 좋은 방식!
+
+        memberRepository.save(member);
+        return member.getId();
+    }
+
+}
+```  
+ * 여기서 보면  
+    ```java
+    memberRepository.findById(member.getId()).ifPresent(m -> {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
+    ```
+    이런식으로 로직이 있는 애는 메서드로 뽑는게 좋음!
+
+❔method 뽑기❔  
+> 단축키: 드래그하고 alt + enter  
+> 아니면 옆에 전구 누르기!    
+
+![image](https://user-images.githubusercontent.com/77817094/174264593-ed6602c6-a81f-4b03-a0b0-1c6fb323b5f9.png)
+
+> 바로 생성하고 싶으면 ctrl + alt + m  
+
+![image](https://user-images.githubusercontent.com/77817094/174265386-41b1bba4-acc9-4f0d-927c-9cf2844df7bd.png)  
+
+이제 이름 바꿔주면 이쁘게 완성.
+![image](https://user-images.githubusercontent.com/77817094/174265850-558dfb1a-ed5f-435c-b17f-303bf1803b0c.png)
+
+
+💦전체 회원 조회하는 기능💦
+
+* 아까 저기에 이어서 추가 해주기.
+```java
+//전체 회원 조회
+public List<Member> findMembers() {
+    return memberRepository.findAll();
+}
+
+public Optional<Member> findOne(Long memberId) {
+    return memberRepository.findById(memberId);
+}
+```
+
+✨알아두기✨
+> 리포지토리는 그냥 단순히 저장소에 넣었다 뺏다하는 느낌이니까 그냥 기계적으로 개발스러운 느낌의 이름을 지어주고, 서비스 클래스는 비지니스에 의존하는 애니까 비지니스에 가깝게 이름을 지어줘야 함.
 
 ### 🎁 회원 서비스 테스트🎁
