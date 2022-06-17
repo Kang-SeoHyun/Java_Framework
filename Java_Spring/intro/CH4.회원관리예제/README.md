@@ -150,7 +150,6 @@ public class MemoryMemberRepository implements MemberRepository {
 ```   
 
 ### 🎁 회원 리포지토리 테스트 케이스 작성🎁  
-
 회원 repository 메모리 구현체 테스트
 ![image](https://user-images.githubusercontent.com/77817094/174022437-04a8622c-a1e1-4728-9eaf-e98f16685587.png)  
 
@@ -181,7 +180,7 @@ public class MemoryMemberRepositoryTest {
     }
 
 }
-```   
+```    
 * 실행 결과     
 ![image](https://user-images.githubusercontent.com/77817094/174022835-6544c566-5cf9-4613-9fe7-8e7a0fb0658c.png)   
 -> 이렇게 나오는데 매번 출력 값을 볼 수는 없으니까 'assertions' 라는 기능이 있다.     
@@ -189,11 +188,11 @@ public class MemoryMemberRepositoryTest {
 ```java 
 //System.out.println("result = " + (result == member));
 Assertions.assertEquals(result,member);
-```  
-* 똑같을 경우.
+```   
+* 똑같을 경우.  
 ![image](https://user-images.githubusercontent.com/77817094/174023890-2ddd4c74-b2c1-4841-aab7-1eaf11af6228.png)  
 
-* 다를 경우.
+* 다를 경우.  
 ![image](https://user-images.githubusercontent.com/77817094/174023983-cd2b9f42-ffe1-4f08-9bee-dac7454a7dc1.png)  
 
 요새는 이 문법 많이 씀.  
